@@ -1,0 +1,22 @@
+{
+    "files.associations": {
+        "string": "cpp",
+        "ostream": "cpp",
+        "vector": "cpp",
+        "map": "cpp",
+        "__bit_reference": "cpp",
+        "__mutex_base": "cpp",
+        "__node_handle": "cpp",
+        "array": "cpp",
+        "fstream": "cpp",
+        "ios": "cpp",
+        "istream": "cpp",
+        "optional": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "string_view": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp",
+        "iostream": "cpp"
+    }
+}
