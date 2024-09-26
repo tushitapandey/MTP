@@ -11,7 +11,7 @@
 #include<set>
 using namespace std;
 
-int numberOfPeople = 40;
+int numberOfPeople = 26;
 // Associate each man or woman ranker with an index
 void generateNamesAndPreferences(bool print, ofstream& logFile);
 vector<map<string, string>>  GaleShapley(ofstream& logFile);
@@ -42,7 +42,7 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
             continue;
         }
         if (print)
-            logFile << "Man " << chosenMan << " " << original_matches[0][chosenMan] << "\n Possible Accomplices: \n";
+            logFile << "Man " << chosenMan << " " << original_matches[0][chosenMan] <<"\n ";
 
         // int possible_accomplices = 0;
         bool found_better = false;
