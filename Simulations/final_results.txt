@@ -1,0 +1,16 @@
+Number of men: 40
+17.5% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
+57.5% of men have an incentive to look for an accomplice
+25% of men already get their top partner in the original Gale Shapley Algorithm
+Number of men: 60
+13.3333% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
+76.6667% of men have an incentive to look for an accomplice
+10% of men already get their top partner in the original Gale Shapley Algorithm
+Number of men: 80
+17.5% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
+62.5% of men have an incentive to look for an accomplice
+20% of men already get their top partner in the original Gale Shapley Algorithm
+Number of men: 100
+10% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
+72% of men have an incentive to look for an accomplice
+18% of men already get their top partner in the original Gale Shapley Algorithm

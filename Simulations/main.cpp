@@ -22,6 +22,7 @@ map<string, vector<string>> womenRanking;
 vector<string> initialRanking;
 vector<string> temporaryRanking;
 bool print = true;
+bool result_print= true;
 
 int accross_trial_men_with_incentive = 0;
 int accross_trial_men_with_best_partner = 0;
@@ -39,8 +40,8 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
             men_with_best_partner++;
             continue;
         }
-        if (print)
-            logFile << "Man " << chosenMan << " " << original_matches[0][chosenMan] <<"\n ";
+        // if (print)
+        //     logFile << "Man " << chosenMan << " " << original_matches[0][chosenMan] <<"\n ";
 
         // int possible_accomplices = 0;
         bool found_better = false;
@@ -71,18 +72,24 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
                     menRanking[chosenMan].end(), temporary_matches[0][chosenMan]);
 
             if (man_difference > 0) {
-                if (print) {
-                    logFile << "  " << chosenWoman << " matched to " << temporary_matches[1][chosenWoman]
-                        << " was matched to " << original_matches[1][chosenWoman]
-                        << "\n  Man matched to " << temporary_matches[0][chosenMan] << "\n";
-                }
+                     womenRanking[chosenWoman] = initialRanking;
+                     if (result_print || print) {
+                        // logFile<<"\nMan "<<chosenMan<<" goes from "<<original_matches[0][chosenMan] << " to "<<  temporary_matches[0][chosenMan];
+                        // logFile << " after manipulation by Woman " << chosenWoman << " who goes from " << original_matches[1][chosenWoman]
+                        //     << " to " << temporary_matches[1][chosenWoman]<<"\n";
+                        logFile<< "Man difference is "<<man_difference<<"\n";
 
-                found_better = true;
-                // men_with_incentive++;
-                men_with_incentive.insert(chosenMan);
-                womenRanking[chosenWoman] = initialRanking;
-                break;
-            }
+
+                        logFile<< "Woman difference is "<<find(womenRanking[chosenWoman].begin(),
+                    womenRanking[chosenWoman].end(), original_matches[1][chosenWoman])
+                    - find(womenRanking[chosenWoman].begin(),
+                        womenRanking[chosenWoman].end(), temporary_matches[1][chosenWoman])<<"\n";
+                        
+                    }
+                    found_better = true;
+                    men_with_incentive.insert(chosenMan);
+                    break;
+                }
 
             for (int swap = swapRanking + 1; !found_better&&  swap < temporaryRanking.size(); swap++) {
                 iter_swap(temporaryRanking.begin(), temporaryRanking.begin() + swap);
@@ -95,15 +102,21 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
                         menRanking[chosenMan].end(), temporary_matches[0][chosenMan]);
 
                 if (man_difference > 0) {
-                    if (print) {
-                        logFile << "  " << chosenWoman << " matched to " << temporary_matches[1][chosenWoman]
-                            << " was matched to " << original_matches[1][chosenWoman]
-                            << "\n  Man matched to " << temporary_matches[0][chosenMan] << "\n";
-                    }
+                     womenRanking[chosenWoman] = initialRanking;
+                     if (result_print || print) {
+                        // logFile<<"\nMan "<<chosenMan<<" goes from "<<original_matches[0][chosenMan] << " to "<<  temporary_matches[0][chosenMan];
+                        // logFile << " after manipulation by Woman " << chosenWoman << " who goes from " << original_matches[1][chosenWoman]
+                        //     << " to " << temporary_matches[1][chosenWoman]<<"\n";
+                        logFile<< "Man difference is "<<man_difference<<"\n";
 
+
+                        logFile<< "Woman difference is "<<find(womenRanking[chosenWoman].begin(),
+                    womenRanking[chosenWoman].end(), original_matches[1][chosenWoman])
+                    - find(womenRanking[chosenWoman].begin(),
+                        womenRanking[chosenWoman].end(), temporary_matches[1][chosenWoman])<<"\n";
+                        
+                    }
                     found_better = true;
-                    // men_with_incentive++;
-                    womenRanking[chosenWoman] = initialRanking;
                     men_with_incentive.insert(chosenMan);
                     break;
                 }
@@ -111,17 +124,18 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
             womenRanking[chosenWoman] = initialRanking;
         }
     }
-    
-    resultFile << men_with_incentive.size() << " men were strictly better off in this trial.\n";
+    if(result_print)
+        resultFile << men_with_incentive.size() << " men were strictly better off in this trial.\n";
     accross_trial_men_with_who_do_not_have_a_better_partner += (numberOfPeople- men_with_best_partner - men_with_incentive.size());
     accross_trial_men_with_incentive += men_with_incentive.size();
     accross_trial_men_with_best_partner += men_with_best_partner;
     
 }
 
-void generateNamesAndPreferences(bool print, ofstream& logFile) {
+void generateNamesAndPreferences(bool loc_print, ofstream& logFile) {
+    loc_print=!print;
     if (print)
-        logFile << "Preferences\n";
+        logFile << "\nPreferences\n";
     std::random_device rd;
     std::mt19937 g(rd());
 
@@ -130,7 +144,7 @@ void generateNamesAndPreferences(bool print, ofstream& logFile) {
         vector<string> preferences = women;
         shuffle(preferences.begin(), preferences.end(), g);
         menRanking[man] = preferences;
-        if (print) {
+        if (loc_print) {
             logFile << man << " : ";
             for (auto& w : preferences)
                 logFile << w << " ";
@@ -143,7 +157,7 @@ void generateNamesAndPreferences(bool print, ofstream& logFile) {
         vector<string> preferences = men;
         shuffle(preferences.begin(), preferences.end(), g);
         womenRanking[woman] = preferences;
-        if (print) {
+        if (loc_print) {
             logFile << woman << " : ";
             for (auto& w : preferences)
                 logFile << w << " ";
@@ -193,22 +207,23 @@ int main(int argc, char* argv[]) {
     ofstream resultFile("results.txt");
     ofstream logFile("log_file.txt");
      ofstream finalResultFile("final_results.txt");
-    for(numberOfPeople=10;numberOfPeople<200; numberOfPeople+=10)
+        numberOfPeople=40;
+        // Generate men's and women's names
+    for (int i = 0; i < numberOfPeople; i++) {
+        men.push_back(to_string(i + 1));
+        women.push_back(to_string(i + 1));
+    }
+    int num = numberOfPeople;
+    for(;numberOfPeople<101; numberOfPeople+=20)
     {
         accross_trial_men_with_incentive = 0;
         accross_trial_men_with_best_partner = 0;
         accross_trial_men_with_who_do_not_have_a_better_partner=0;
-        men.clear();
-        women.clear();
-        // Generate men's and women's names
-        for (int i = 0; i < numberOfPeople; i++) {
-            men.push_back(to_string(i + 1));
-            women.push_back(to_string(i + 1));
-        }
-        
-        int num_trials = 500; 
+        resultFile <<"Number of men: "<<numberOfPeople<<"\n";
+        logFile<<"Number of men: "<<numberOfPeople<<"\n";
+        int num_trials = 1; 
         for (int i = 1; i <= num_trials; i++) {
-            if (print){
+            if (result_print){
                 resultFile << "Trial #" << i << " ";
                 logFile << "Trial #" << i << " ";
             }
@@ -216,9 +231,14 @@ int main(int argc, char* argv[]) {
             Trial(logFile, resultFile);
         }
         finalResultFile<<"Number of men: "<<numberOfPeople<<"\n";
-        finalResultFile<< accross_trial_men_with_who_do_not_have_a_better_partner/(numberOfPeople*num_trials) *100 <<"\% of men have no incentive to look for an accomplice even though ther're not matched to their first preference\n";
-        finalResultFile<< accross_trial_men_with_incentive/(numberOfPeople*num_trials) *100 <<"\% of men have an incentive to look for an accomplice\n";
-        finalResultFile<< accross_trial_men_with_best_partner/(numberOfPeople*num_trials) *100 <<"\% of men already get their top partner in the original Gale Shapley Algorithm\n";
+        finalResultFile<< (double)(100*accross_trial_men_with_who_do_not_have_a_better_partner)/(numberOfPeople*num_trials) <<"\% of men have no incentive to look for an accomplice even though ther're not matched to their first preference\n";
+        finalResultFile<< (double)(100*accross_trial_men_with_incentive)/(numberOfPeople*num_trials) <<"\% of men have an incentive to look for an accomplice\n";
+        finalResultFile<< (double)accross_trial_men_with_best_partner/(numberOfPeople*num_trials) *100 <<"\% of men already get their top partner in the original Gale Shapley Algorithm\n";
+         for(int i=0;i<20;i++){
+            num++;
+            men.push_back(to_string(num));
+            women.push_back(to_string(num));
+        }
     }
      
      resultFile.close();
