@@ -25,7 +25,7 @@ bool print = true;
 
 int accross_trial_men_with_incentive = 0;
 int accross_trial_men_with_best_partner = 0;
-
+int accross_trial_men_with_who_do_not_have_a_better_partner=0;
 void Trial(ofstream& logFile, ofstream& resultFile) {
     menRanking.clear(); womenRanking.clear();
     generateNamesAndPreferences(print, logFile);
@@ -33,8 +33,6 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
     vector<map<string, string>> temporary_matches;
     int men_with_best_partner = 0;
     set<string> men_with_incentive;
-
-    set<int> aa;
     for (string chosenMan : men) {
 
         if (original_matches[0][chosenMan] == menRanking[chosenMan][0]) {
@@ -115,8 +113,10 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
     }
     
     resultFile << men_with_incentive.size() << " men were strictly better off in this trial.\n";
+    accross_trial_men_with_who_do_not_have_a_better_partner += (numberOfPeople- men_with_best_partner - men_with_incentive.size());
     accross_trial_men_with_incentive += men_with_incentive.size();
     accross_trial_men_with_best_partner += men_with_best_partner;
+    
 }
 
 void generateNamesAndPreferences(bool print, ofstream& logFile) {
@@ -192,22 +192,36 @@ int main(int argc, char* argv[]) {
 
     ofstream resultFile("results.txt");
     ofstream logFile("log_file.txt");
-    // Generate men's and women's names
-     for (int i = 0; i < numberOfPeople; i++) {
-        men.push_back(to_string(i + 1));
-        women.push_back(string(1, 'A' + i % 26));
-    }
-    int num_trials = 1000; 
-    for (int i = 1; i <= num_trials; i++) {
-        if (print){
-            resultFile << "Trial #" << i << " ";
-            logFile << "Trial #" << i << " ";
+     ofstream finalResultFile("final_results.txt");
+    for(numberOfPeople=10;numberOfPeople<200; numberOfPeople+=10)
+    {
+        accross_trial_men_with_incentive = 0;
+        accross_trial_men_with_best_partner = 0;
+        accross_trial_men_with_who_do_not_have_a_better_partner=0;
+        men.clear();
+        women.clear();
+        // Generate men's and women's names
+        for (int i = 0; i < numberOfPeople; i++) {
+            men.push_back(to_string(i + 1));
+            women.push_back(to_string(i + 1));
         }
         
-        Trial(logFile, resultFile);
+        int num_trials = 500; 
+        for (int i = 1; i <= num_trials; i++) {
+            if (print){
+                resultFile << "Trial #" << i << " ";
+                logFile << "Trial #" << i << " ";
+            }
+            
+            Trial(logFile, resultFile);
+        }
+        finalResultFile<<"Number of men: "<<numberOfPeople<<"\n";
+        finalResultFile<< accross_trial_men_with_who_do_not_have_a_better_partner/(numberOfPeople*num_trials) *100 <<"\% of men have no incentive to look for an accomplice even though ther're not matched to their first preference\n";
+        finalResultFile<< accross_trial_men_with_incentive/(numberOfPeople*num_trials) *100 <<"\% of men have an incentive to look for an accomplice\n";
+        finalResultFile<< accross_trial_men_with_best_partner/(numberOfPeople*num_trials) *100 <<"\% of men already get their top partner in the original Gale Shapley Algorithm\n";
     }
-
-    resultFile.close();
+     
+     resultFile.close();
     logFile.close();
 
     return 0;
