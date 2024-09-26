@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <ctime>
 #include <string>
 #include <map>
 #include <list>
@@ -7,10 +8,10 @@
 #include <random>
 #include <cstdlib> 
 #include <fstream>
-
+#include<set>
 using namespace std;
 
-int numberOfPeople = 10;
+int numberOfPeople = 40;
 // Associate each man or woman ranker with an index
 void generateNamesAndPreferences(bool print, ofstream& logFile);
 vector<map<string, string>>  GaleShapley(ofstream& logFile);
@@ -26,11 +27,14 @@ int accross_trial_men_with_incentive = 0;
 int accross_trial_men_with_best_partner = 0;
 
 void Trial(ofstream& logFile, ofstream& resultFile) {
+    menRanking.clear(); womenRanking.clear();
     generateNamesAndPreferences(print, logFile);
     vector<map<string, string>> original_matches = GaleShapley(logFile);
     vector<map<string, string>> temporary_matches;
-    int men_with_incentive = 0, men_with_best_partner = 0;
+    int men_with_best_partner = 0;
+    set<string> men_with_incentive;
 
+    set<int> aa;
     for (string chosenMan : men) {
 
         if (original_matches[0][chosenMan] == menRanking[chosenMan][0]) {
@@ -40,10 +44,16 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
         if (print)
             logFile << "Man " << chosenMan << " " << original_matches[0][chosenMan] << "\n Possible Accomplices: \n";
 
-        int possible_accomplices = 0;
+        // int possible_accomplices = 0;
         bool found_better = false;
 
         for (string& chosenWoman : menRanking[chosenMan]) {
+            if(chosenWoman == menRanking[chosenMan][0]){
+                continue;
+            }
+            if(found_better==true){
+                break;
+            }
             vector<string> initialRanking = womenRanking[chosenWoman];
             int swapRanking = find(initialRanking.begin(),
                 initialRanking.end(), original_matches[1][chosenWoman]) - initialRanking.begin() + 1;
@@ -70,11 +80,13 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
                 }
 
                 found_better = true;
-                men_with_incentive++;
+                // men_with_incentive++;
+                men_with_incentive.insert(chosenMan);
                 womenRanking[chosenWoman] = initialRanking;
+                break;
             }
 
-            for (int swap = swapRanking + 1; swap < temporaryRanking.size(); swap++) {
+            for (int swap = swapRanking + 1; !found_better&&  swap < temporaryRanking.size(); swap++) {
                 iter_swap(temporaryRanking.begin(), temporaryRanking.begin() + swap);
                 womenRanking[chosenWoman] = temporaryRanking;
 
@@ -92,17 +104,18 @@ void Trial(ofstream& logFile, ofstream& resultFile) {
                     }
 
                     found_better = true;
-                    men_with_incentive++;
+                    // men_with_incentive++;
                     womenRanking[chosenWoman] = initialRanking;
+                    men_with_incentive.insert(chosenMan);
                     break;
                 }
             }
             womenRanking[chosenWoman] = initialRanking;
         }
     }
-
-    resultFile << men_with_incentive << " men were strictly better off in this trial.\n";
-    accross_trial_men_with_incentive += men_with_incentive;
+    
+    resultFile << men_with_incentive.size() << " men were strictly better off in this trial.\n";
+    accross_trial_men_with_incentive += men_with_incentive.size();
     accross_trial_men_with_best_partner += men_with_best_partner;
 }
 
@@ -111,12 +124,6 @@ void generateNamesAndPreferences(bool print, ofstream& logFile) {
         logFile << "Preferences\n";
     std::random_device rd;
     std::mt19937 g(rd());
-
-    // Generate men's and women's names
-    for (int i = 0; i < numberOfPeople; i++) {
-        men.push_back(to_string(i + 1));
-        women.push_back(string(1, 'A' + i % 26));
-    }
 
     // Generate random preferences for each man
     for (auto& man : men) {
@@ -183,13 +190,20 @@ int main(int argc, char* argv[]) {
     if (argc == 2)
         numberOfPeople = atoi(argv[1]);
 
-    ofstream resultFile("trial_results.txt");
+    ofstream resultFile("results.txt");
     ofstream logFile("log_file.txt");
-
-    int num_trials = 1;
+    // Generate men's and women's names
+     for (int i = 0; i < numberOfPeople; i++) {
+        men.push_back(to_string(i + 1));
+        women.push_back(string(1, 'A' + i % 26));
+    }
+    int num_trials = 1000; 
     for (int i = 1; i <= num_trials; i++) {
-        if (print)
+        if (print){
+            resultFile << "Trial #" << i << " ";
             logFile << "Trial #" << i << " ";
+        }
+        
         Trial(logFile, resultFile);
     }
 

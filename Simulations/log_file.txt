@@ -1,0 +1,180 @@
+Trial #1 Preferences
+1 : H C A G F B I D J E 
+2 : H A G B F C J I D E 
+3 : F G B C I J E A H D 
+4 : H E C B F I G D A J 
+5 : F G J D C A I B E H 
+6 : J C D B A E F G H I 
+7 : J A I B F D C E G H 
+8 : C B G F I E J A D H 
+9 : D J E I H G C B A F 
+10 : H F G I D E J B A C 
+A : 5 7 8 2 6 4 3 1 10 9 
+B : 10 1 5 6 9 7 2 8 3 4 
+C : 2 4 10 9 3 5 6 7 8 1 
+D : 2 3 6 10 8 7 5 4 1 9 
+E : 1 5 6 4 8 10 3 9 2 7 
+F : 2 9 10 3 1 8 7 4 5 6 
+G : 8 1 9 3 6 5 10 2 7 4 
+H : 10 9 6 4 8 5 2 1 3 7 
+I : 10 1 5 3 2 6 7 8 9 4 
+J : 6 5 10 9 1 8 7 4 3 2 
+Man 1 G
+ Possible Accomplices: 
+  C matched to 1 was matched to 8
+  Man matched to C
+Man 2 B
+ Possible Accomplices: 
+  A matched to 2 was matched to 7
+  Man matched to A
+Man 4 E
+ Possible Accomplices: 
+Man 5 D
+ Possible Accomplices: 
+  G matched to 5 was matched to 1
+  Man matched to G
+Man 7 A
+ Possible Accomplices: 
+Man 9 I
+ Possible Accomplices: 
+  J matched to 9 was matched to 6
+  Man matched to J
+Trial #2 Preferences
+1 : A I E G D F H B C J 
+2 : G J D B E C H A I F 
+3 : I D F G A B C J E H 
+4 : H A J G F C B I E D 
+5 : H G C D J A B E F I 
+6 : J H I F B G E C D A 
+7 : I D C H A E B G J F 
+8 : D B G J I A E H F C 
+9 : C I B J A G D H F E 
+10 : B A G J E I D F C H 
+A : 4 5 3 9 10 8 7 2 1 6 
+B : 8 3 10 4 9 2 1 7 6 5 
+C : 7 10 9 6 1 2 4 3 8 5 
+D : 1 3 5 7 8 6 10 9 4 2 
+E : 4 5 6 1 2 10 9 3 7 8 
+F : 5 10 1 7 4 9 6 2 8 3 
+G : 8 9 10 2 6 4 5 7 1 3 
+H : 7 3 10 4 1 9 8 2 6 5 
+I : 5 3 9 10 7 6 4 2 8 1 
+J : 10 2 5 4 3 1 6 7 9 8 
+Man 1 E
+ Possible Accomplices: 
+  I matched to 1 was matched to 3
+  Man matched to I
+Man 2 J
+ Possible Accomplices: 
+  J matched to 9 was matched to 2
+  Man matched to G
+Man 5 D
+ Possible Accomplices: 
+  G matched to 5 was matched to 10
+  Man matched to G
+Man 6 F
+ Possible Accomplices: 
+  H matched to 6 was matched to 4
+  Man matched to H
+Man 7 C
+ Possible Accomplices: 
+  D matched to 7 was matched to 5
+  Man matched to D
+Man 8 B
+ Possible Accomplices: 
+Man 9 A
+ Possible Accomplices: 
+  I matched to 9 was matched to 3
+  Man matched to I
+Man 10 G
+ Possible Accomplices: 
+  A matched to 10 was matched to 9
+  Man matched to A
+Trial #3 Preferences
+1 : E F B J H G D A I C 
+2 : B J H I A C E F D G 
+3 : H G F B C E A D J I 
+4 : J E B I D H F C G A 
+5 : I F E B G A C D J H 
+6 : F C I H J D B A G E 
+7 : C G J D E I B A H F 
+8 : D C A G J B H I E F 
+9 : E I F G H C B J A D 
+10 : F A E I B J C D G H 
+A : 4 8 1 3 7 10 5 2 6 9 
+B : 10 4 9 7 1 3 5 2 6 8 
+C : 5 1 4 8 7 3 2 9 6 10 
+D : 5 2 1 9 3 7 4 10 8 6 
+E : 3 8 1 7 6 10 4 5 9 2 
+F : 10 4 7 8 9 5 6 2 1 3 
+G : 4 10 5 3 8 1 9 2 7 6 
+H : 9 8 6 7 1 5 10 2 4 3 
+I : 7 8 2 6 3 1 4 10 9 5 
+J : 9 8 6 3 2 1 5 10 4 7 
+Man 1 D
+ Possible Accomplices: 
+  F matched to 9 was matched to 10
+  Man matched to E
+Man 2 A
+ Possible Accomplices: 
+  J matched to 2 was matched to 6
+  Man matched to J
+Man 3 E
+ Possible Accomplices: 
+  G matched to 3 was matched to 5
+  Man matched to G
+Man 4 B
+ Possible Accomplices: 
+  E matched to 4 was matched to 3
+  Man matched to E
+Man 5 G
+ Possible Accomplices: 
+  F matched to 5 was matched to 10
+  Man matched to F
+Man 6 J
+ Possible Accomplices: 
+  C matched to 7 was matched to 8
+  Man matched to I
+Man 7 I
+ Possible Accomplices: 
+  G matched to 3 was matched to 5
+  Man matched to C
+Man 8 C
+ Possible Accomplices: 
+  G matched to 3 was matched to 5
+  Man matched to D
+Man 9 H
+ Possible Accomplices: 
+  I matched to 9 was matched to 7
+  Man matched to I
+Trial #4 Preferences
+1 : B D J E G F H A C I 
+2 : J E F B H I C D A G 
+3 : E J I B A G F C D H 
+4 : F D G E I B H C J A 
+5 : F H D G C I J B A E 
+6 : H D B A J I E F C G 
+7 : I J A G H B F E D C 
+8 : G B C F E D A J H I 
+9 : B G A C H D E J F I 
+10 : J C D F E A H B I G 
+A : 2 3 8 9 7 4 6 1 10 5 
+B : 3 1 2 7 6 5 9 10 8 4 
+C : 1 4 8 7 3 6 10 2 9 5 
+D : 4 3 8 7 1 9 10 5 2 6 
+E : 5 8 7 6 2 1 10 3 9 4 
+F : 9 6 4 8 10 1 2 3 5 7 
+G : 8 5 1 3 10 4 9 2 6 7 
+H : 1 4 8 7 9 3 10 6 5 2 
+I : 1 6 7 8 3 2 4 5 10 9 
+J : 2 10 1 4 9 6 3 7 5 8 
+Man 5 D
+ Possible Accomplices: 
+  H matched to 5 was matched to 6
+  Man matched to H
+Man 9 A
+ Possible Accomplices: 
+  G matched to 9 was matched to 8
+  Man matched to G
+Man 10 C
+ Possible Accomplices: 
