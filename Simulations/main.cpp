@@ -206,8 +206,8 @@ int main(int argc, char* argv[]) {
 
     ofstream resultFile("results.txt");
     ofstream logFile("log_file.txt");
-     ofstream finalResultFile("final_results.txt");
-        numberOfPeople=40;
+    ofstream finalResultFile("final_results.txt");
+    numberOfPeople=40;
         // Generate men's and women's names
     for (int i = 0; i < numberOfPeople; i++) {
         men.push_back(to_string(i + 1));
@@ -221,7 +221,7 @@ int main(int argc, char* argv[]) {
         accross_trial_men_with_who_do_not_have_a_better_partner=0;
         resultFile <<"Number of men: "<<numberOfPeople<<"\n";
         logFile<<"Number of men: "<<numberOfPeople<<"\n";
-        int num_trials = 1; 
+        int num_trials = 100; 
         for (int i = 1; i <= num_trials; i++) {
             if (result_print){
                 resultFile << "Trial #" << i << " ";
