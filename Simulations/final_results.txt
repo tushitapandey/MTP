@@ -1,16 +1,5 @@
-Number of men: 40
-14.275% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
-60.8% of men have an incentive to look for an accomplice
-24.925% of men already get their top partner in the original Gale Shapley Algorithm
-Number of men: 60
-13.3333% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
-62.65% of men have an incentive to look for an accomplice
-24.0167% of men already get their top partner in the original Gale Shapley Algorithm
-Number of men: 80
-13.3375% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
-63.9875% of men have an incentive to look for an accomplice
-22.675% of men already get their top partner in the original Gale Shapley Algorithm
-Number of men: 100
-12.17% of men have no incentive to look for an accomplice even though ther're not matched to their first preference
-66.18% of men have an incentive to look for an accomplice
-21.65% of men already get their top partner in the original Gale Shapley Algorithm
+After 100 trials:
+Total Metric 1: 43.2222% men matched with their most ideal partner.
+Total Metric 2: 34.4444% men cannot improve by manipulating a woman lower in their ranking than the match they got.
+Total Metric 3: 22.3333% men can improve by manipulating a woman lower in their ranking than the match they got.
+Total Metric 4: 21.1111% men can improve to a woman higher than the lying woman in their ranking.
