@@ -1,5 +1,5 @@
-After 100 trials:
-Total Metric 1: 43.2222% men matched with their most ideal partner.
-Total Metric 2: 34.4444% men cannot improve by manipulating a woman lower in their ranking than the match they got.
-Total Metric 3: 22.3333% men can improve by manipulating a woman lower in their ranking than the match they got.
-Total Metric 4: 21.1111% men can improve to a woman higher than the lying woman in their ranking.
+After 10 trials:
+Total Metric 1: 0% men matched with their most ideal partner.
+Total Metric 2: 0% men cannot improve by manipulating a woman lower in their ranking than the match they got.
+Total Metric 3: 0% men can improve by manipulating a woman lower in their ranking than the match they got.
+Total Metric 4: 0% men can improve to a woman higher than the lying woman in their ranking.
