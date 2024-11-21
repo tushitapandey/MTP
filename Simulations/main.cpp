@@ -14,7 +14,7 @@
 #include <string>
 using namespace std;
 
-int n =9;
+int n =15;
 int fac(int n){
     if(n==0)
         return 1;
@@ -30,8 +30,10 @@ int totalIdealMatches = 0;
 int totalCanImprove =0;
 
 
+
 int global_best_matched=0;
 int global_trivial_manipulations =0;
+int global_successful_trivial_manipulations =0; 
 int global_possible_non_trivial_manipulations =0;
 int global_successful_non_trivial_manipulations=0;
 
@@ -280,59 +282,58 @@ void Trial1(map<string, vector<string>>  menRanking, map<string, vector<string>>
     cout<<l<<"\n";
 }
 
-// void betterWoman(map<string, vector<string>> menRanking,
-//                 map<string, vector<string>> womenRanking , 
-//                 string man, 
-//                 string woman,
-//                 ofstream& logFile, 
-//                 vector<map<string, string> > original_matches){
-//     vector<map<string, string> > temporary_matches;
-//     vector<string> initialRanking = womenRanking[woman];
-//     auto iterator= find(womenRanking[woman].begin(), womenRanking[woman].end(), original_matches[1][woman]);
-//     //int swapRanking =  distance(womenRanking[woman].begin(), iterator) ;
-//     int swapRanking =1;
-//             if(swapRanking == womenRanking[woman].size()-1)   
-//                 return;
-//     vector<string> temporaryRanking = initialRanking;
-//     string swapMan = temporaryRanking[swapRanking];
-//     temporaryRanking.erase(temporaryRanking.begin() + swapRanking++);
-//     temporaryRanking.insert(temporaryRanking.begin(), swapMan);
-//     womenRanking[woman] = temporaryRanking;  
-//     temporary_matches = GaleShapley(menRanking, womenRanking, logFile);  // Get the temporary matching
-//     string temporaryWoman = temporary_matches[0][man];  
-//    auto it = menRanking.find(man);
-//     auto originallyGoodPos = find(it->second.begin(), it->second.end(), woman);
-//     auto manipulatedPosition = find(it->second.begin(), it->second.end(), temporaryWoman);
-//     int originalIndex = distance(it->second.begin(), originallyGoodPos);
-//     int manipulatedIndex = distance(it->second.begin(), manipulatedPosition);
-//     if (manipulatedIndex < originalIndex) {
-//         //logFile<<"better to "<<temporaryWoman;
-//         // betterOffCount++;  
-//          menStrictlyBetterOffByBetterWoman ++;
-//         womenRanking[woman] = initialRanking;
-//         return;
-//     }else{
-//         for(; swapRanking< temporaryRanking.size();swapRanking++){
-//             iter_swap(temporaryRanking.begin(), temporaryRanking.begin() + swapRanking);
-//             womenRanking[woman] = temporaryRanking;
-//             temporary_matches = GaleShapley(menRanking, womenRanking, logFile);
-//             temporaryWoman = temporary_matches[0][man];  
-//             originallyGoodPos = find(it->second.begin(), it->second.end(), woman);
-//             manipulatedPosition = find(it->second.begin(), it->second.end(), temporaryWoman);
-//             originalIndex = distance(it->second.begin(), originallyGoodPos);
-//             manipulatedIndex = distance(it->second.begin(), manipulatedPosition);
-//             if (manipulatedIndex < originalIndex) {
-//                 //logFile<<"better to "<<temporaryWoman;
-//                  menStrictlyBetterOffByBetterWoman ++;
-//                 // betterOffCount++;  
-//                 womenRanking[woman] = initialRanking;
-//                return;
-//             }
-//         }
-//     }
-//     //logFile<<"cannot make man better\n";
-//     womenRanking[woman] = initialRanking;
-// }
+bool betterWoman(map<string, vector<string>> menRanking,
+                map<string, vector<string>> womenRanking , 
+                string man, 
+                string woman,
+                ofstream& logFile, 
+                vector<map<string, string> > original_matches){
+    vector<map<string, string> > temporary_matches;
+    vector<string> initialRanking = womenRanking[woman];
+    auto iterator= find(womenRanking[woman].begin(), womenRanking[woman].end(), original_matches[1][woman]);
+    //int swapRanking =  distance(womenRanking[woman].begin(), iterator) ;
+    int swapRanking =1;
+    vector<string> temporaryRanking = initialRanking;
+    string swapMan = temporaryRanking[swapRanking];
+    temporaryRanking.erase(temporaryRanking.begin() + swapRanking++);
+    temporaryRanking.insert(temporaryRanking.begin(), swapMan);
+    womenRanking[woman] = temporaryRanking;  
+    temporary_matches = GaleShapley(menRanking, womenRanking, logFile);  // Get the temporary matching
+    string temporaryWoman = temporary_matches[0][man];  
+   auto it = menRanking.find(man);
+    auto originallyGoodPos = find(it->second.begin(), it->second.end(), woman);
+    auto manipulatedPosition = find(it->second.begin(), it->second.end(), temporaryWoman);
+    int originalIndex = distance(it->second.begin(), originallyGoodPos);
+    int manipulatedIndex = distance(it->second.begin(), manipulatedPosition);
+    if (manipulatedIndex < originalIndex) {
+        //logFile<<"better to "<<temporaryWoman;
+        // betterOffCount++;  
+        //  menStrictlyBetterOffByBetterWoman ++;
+        womenRanking[woman] = initialRanking;
+        return true;
+    }else{
+        for(; swapRanking< temporaryRanking.size();swapRanking++){
+            iter_swap(temporaryRanking.begin(), temporaryRanking.begin() + swapRanking);
+            womenRanking[woman] = temporaryRanking;
+            temporary_matches = GaleShapley(menRanking, womenRanking, logFile);
+            temporaryWoman = temporary_matches[0][man];  
+            originallyGoodPos = find(it->second.begin(), it->second.end(), woman);
+            manipulatedPosition = find(it->second.begin(), it->second.end(), temporaryWoman);
+            originalIndex = distance(it->second.begin(), originallyGoodPos);
+            manipulatedIndex = distance(it->second.begin(), manipulatedPosition);
+            if (manipulatedIndex < originalIndex) {
+                //logFile<<"better to "<<temporaryWoman;
+                //  menStrictlyBetterOffByBetterWoman ++;
+                // betterOffCount++;  
+                womenRanking[woman] = initialRanking;
+               return true;
+            }
+        }
+    }
+    //logFile<<"cannot make man better\n";
+    womenRanking[woman] = initialRanking;
+    return false;
+}
 
 
 void Trial2(map<string, vector<string>>  menRanking, map<string, vector<string>> womenRanking,ofstream& logFile){
@@ -447,6 +448,7 @@ void Trial3(map<string, vector<string>>  menRanking, map<string, vector<string>>
         print_matches(original_matches,logFile);
     int allMen_best_matched=0;
     int allMen_trivial_manipulations =0;
+    int allMen_successful_trivial_manipulations =0;
     int allMen_possible_non_trivial_manipulations =0;
     int allMen_successful_non_trivial_manipulations=0;
     for(string man: men){
@@ -454,6 +456,7 @@ void Trial3(map<string, vector<string>>  menRanking, map<string, vector<string>>
         int trivial_manipulations =0;
         int possible_non_trivial_manipulations =0;
         int successful_non_trivial_manipulations=0;
+        int successful_trivial_manipulations=0;
         if(detailed_log){
             logFile<<"Man "<<man;
 
@@ -464,7 +467,6 @@ void Trial3(map<string, vector<string>>  menRanking, map<string, vector<string>>
             allMen_best_matched+= best_matched;
             if(detailed_log){
                         logFile<<" already best matched\n";
-
                     }
             
             continue;
@@ -480,7 +482,9 @@ void Trial3(map<string, vector<string>>  menRanking, map<string, vector<string>>
                 trivial_manipulations++;
                 if(detailed_log)
                     logFile<<"trivial manipulator\n";
-                // betterWoman(menRanking,womenRanking,man,woman,logFile,original_matches);
+                if(betterWoman(menRanking,womenRanking,man,woman,logFile,original_matches)){
+                    successful_trivial_manipulations++;
+                }
                 continue;
             }
             if(detailed_log)
@@ -557,6 +561,7 @@ void Trial3(map<string, vector<string>>  menRanking, map<string, vector<string>>
         allMen_trivial_manipulations+= trivial_manipulations;
         allMen_possible_non_trivial_manipulations+= possible_non_trivial_manipulations;
         allMen_successful_non_trivial_manipulations+= successful_non_trivial_manipulations;
+        allMen_successful_trivial_manipulations+= successful_trivial_manipulations;
     }
     logFile<<"Best Matched pairs  "<<allMen_best_matched<<"\n";
     logFile<<"Trivial Manipulations "<<allMen_trivial_manipulations<<"\n";
@@ -567,6 +572,7 @@ void Trial3(map<string, vector<string>>  menRanking, map<string, vector<string>>
     global_trivial_manipulations+=allMen_trivial_manipulations;
     global_possible_non_trivial_manipulations+=allMen_possible_non_trivial_manipulations;
     global_successful_non_trivial_manipulations+=allMen_successful_non_trivial_manipulations;
+    global_successful_trivial_manipulations += allMen_successful_trivial_manipulations;
 
 
 
@@ -628,7 +634,7 @@ int main(int argc, char* argv[]) {
     int trials =1000;
     bool trial_1=false, trial_2=false,trial_3=false;
     // ofstream resultFile("results.txt");
-    ofstream finalResultFile("final_results.txt");
+    ofstream finalResultFile("15Women_results.txt");
     ofstream trial1File("trial_1.txt");
     ofstream trial2File("trial_2.txt");
     ofstream trial3File("trial_3.txt");
@@ -663,10 +669,18 @@ int main(int argc, char* argv[]) {
     }
     if(trial_3){
     //    finalResultFile<<"Trial 3\n";
-        finalResultFile<<"Best Matched pairs percentage  "<<100.0*global_best_matched/(n*n*trials)<<"\n";
-        finalResultFile<<"Trivial Manipulations percentage "<<100.0*global_trivial_manipulations/(n*n*trials)<<"\n";
-        finalResultFile<<"Possible non trivial manipulations percentage "<<100.0*global_possible_non_trivial_manipulations/(n*n*trials)<<"\n";
-        finalResultFile<<"Successful non trivial manipulations percentage "<<100.0*global_successful_non_trivial_manipulations/(n*n*trials)<<"\n";
+        finalResultFile<<"Best Matched pairs "<<100.0*global_best_matched/(n*n*trials)<<"\n";
+        finalResultFile<<"Total Trivial Manipulations "<<100.0*global_trivial_manipulations/(n*n*trials)<<"\n";
+        
+        
+        finalResultFile<<"Possible non trivial manipulations "<<100.0*global_possible_non_trivial_manipulations/(n*n*trials)<<"\n";
+        
+        finalResultFile<<"Successful Trivial Manipulations"<< 100.0*global_successful_trivial_manipulations/(n*n*trials)<<"\n";
+        finalResultFile<<"Successful non trivial manipulations "<<100.0*global_successful_non_trivial_manipulations/(n*n*trials)<<"\n";
+
+        // finalResultFile<<"Successful non trivial manipulations as a percentage of possible trivial manipulations "<<100.0*global_successful_non_trivial_manipulations/(global_non_trivial_manipulations)<<"\n";
+        // finalResultFile<<"Trivial Manipulations in which lying woman takes man to a woman better than her as a pentage of total trivial maipulation "<< 100.0*global_successful_trivial_manipulations/(n*n*trials)<<"\n";
+
         cout<<"Sanity check " <<global_best_matched+global_trivial_manipulations+global_possible_non_trivial_manipulations - n*n*trials<<"\n";
     }
 
