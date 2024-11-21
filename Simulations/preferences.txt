@@ -1,0 +1,12 @@
+1 : A B C D F E 
+2 : B A E D F C 
+3 : F D C A B E 
+4 : E F C D B A 
+5 : A F E D C B 
+6 : C F A D B E 
+A : 4 2 1 6 3 5 
+B : 6 3 1 2 5 4 
+C : 5 4 2 3 1 6 
+D : 5 2 6 3 4 1 
+E : 6 4 5 1 2 3 
+F : 5 3 1 6 4 2 

@@ -193,8 +193,8 @@ void Trial_3(ofstream& logFile, ofstream& resultFile,
     original_matches= GaleShapley(logFile,menRanking,
                                           womenRanking);
     vector<map<string, string> > temporary_matches;
-    logFile<<"Original GS Matching\n";
-    print_matches(original_matches,logFile);
+    // logFile<<"Original GS Matching\n";
+    // print_matches(original_matches,logFile);
     for(string woman: women){
         vector<string> initialRanking = womenRanking[woman];
             auto iterator= find(womenRanking[woman].begin(), womenRanking[woman].end(), original_matches[1][woman]);

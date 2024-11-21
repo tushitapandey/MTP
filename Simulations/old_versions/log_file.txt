@@ -1,0 +1,50 @@
+Trial #0
+Best Matched pairs  24
+Trivial Manipulations 4
+Possible non trivial manipulations 8
+Successful non trivial manipulations 0
+Trial #1
+Best Matched pairs  30
+Trivial Manipulations 1
+Possible non trivial manipulations 5
+Successful non trivial manipulations 0
+Trial #2
+Best Matched pairs  30
+Trivial Manipulations 4
+Possible non trivial manipulations 2
+Successful non trivial manipulations 0
+Trial #3
+Best Matched pairs  30
+Trivial Manipulations 1
+Possible non trivial manipulations 5
+Successful non trivial manipulations 0
+Trial #4
+Best Matched pairs  30
+Trivial Manipulations 1
+Possible non trivial manipulations 5
+Successful non trivial manipulations 0
+Trial #5
+Best Matched pairs  24
+Trivial Manipulations 3
+Possible non trivial manipulations 9
+Successful non trivial manipulations 0
+Trial #6
+Best Matched pairs  12
+Trivial Manipulations 9
+Possible non trivial manipulations 15
+Successful non trivial manipulations 0
+Trial #7
+Best Matched pairs  30
+Trivial Manipulations 1
+Possible non trivial manipulations 5
+Successful non trivial manipulations 0
+Trial #8
+Best Matched pairs  12
+Trivial Manipulations 7
+Possible non trivial manipulations 17
+Successful non trivial manipulations 0
+Trial #9
+Best Matched pairs  12
+Trivial Manipulations 11
+Possible non trivial manipulations 13
+Successful non trivial manipulations 3
