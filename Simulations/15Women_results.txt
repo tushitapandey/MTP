@@ -1,0 +1,6 @@
+With 15 men/women, After 1000 trials:
+
+Best Matched pairs percentage  35.8667
+Trivial Manipulations percentage 11.928
+Possible non trivial manipulations percentage 52.2053
+Successful non trivial manipulations percentage 7.91689
