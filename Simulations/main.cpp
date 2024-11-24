@@ -625,16 +625,20 @@ void customPreferences(ofstream& logFile){
 
 
 int main(int argc, char* argv[]) {
-    if (argc == 2)
+    if (argc == 2){
         n = atoi(argv[1]);
+        cout<<"using "<<n<<" men\n";
+        cout.flush();
+
+    }
+        
     for (int i = 0; i < n; i++) {
         men.push_back(to_string(i + 1));  
         women.push_back(string(1, 'A' + i)); 
     }
     int trials =1000;
     bool trial_1=false, trial_2=false,trial_3=false;
-    // ofstream resultFile("results.txt");
-    ofstream finalResultFile("15Women_results.txt");
+    ofstream finalResultFile(to_string(n)+"Women_results.txt");
     ofstream trial1File("trial_1.txt");
     ofstream trial2File("trial_2.txt");
     ofstream trial3File("trial_3.txt");
