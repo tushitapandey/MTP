@@ -1,0 +1,107 @@
+Original matches 
+Man 1 : D
+Man 2 : G
+Man 3 : I
+Man 4 : E
+Man 5 : C
+Man 6 : A
+Man 7 : B
+Man 8 : H
+Man 9 : F
+For man 1
+ Lying woman : A
+  6 3
+ Lying woman : B
+ Lying woman : C
+  5 3
+ Lying woman : D
+ Lying woman : E
+  8 3
+ Lying woman : F
+ Lying woman : G
+  7 3
+ Lying woman : H
+ Lying woman : I
+  7 3
+For man 2
+ Lying woman : A
+  6 4
+ Lying woman : B
+  7 4
+ Lying woman : C
+ Lying woman : D
+  4 4
+ Lying woman : E
+ Lying woman : F
+ Lying woman : G
+ Lying woman : H
+ Lying woman : I
+  7 4
+For man 3
+ Already best match
+For man 4
+ Already best match
+For man 5
+ Lying woman : A
+ Lying woman : B
+  7 1
+ Lying woman : C
+Success! New ranking for the woman C 
+5 1 7 4 9 3 6 2 8 
+Old manipulated ranking was 
+6 5 1 7 4 9 3 2 8 
+Manipulation 1 matches
+Man 1 : D
+Man 2 : G
+Man 3 : I
+Man 4 : E
+Man 5 : A
+Man 6 : C
+Man 7 : B
+Man 8 : H
+Man 9 : F
+New matches (5) should be getting the same match or better
+Man 1 : D
+Man 2 : G
+Man 3 : I
+Man 4 : E
+Man 5 : A
+Man 6 : C
+Man 7 : B
+Man 8 : H
+Man 9 : F
+ Lying woman : D
+  4 1
+ Lying woman : E
+  8 1
+ Lying woman : F
+  5 1
+ Lying woman : G
+  7 1
+ Lying woman : H
+  8 1
+ Lying woman : I
+  7 1
+For man 6
+ Lying woman : A
+ Lying woman : B
+  7 1
+ Lying woman : C
+ Lying woman : D
+  4 1
+ Lying woman : E
+  8 1
+ Lying woman : F
+  5 1
+ Lying woman : G
+  7 1
+ Lying woman : H
+  8 1
+ Lying woman : I
+  7 1
+For man 7
+ Already best match
+For man 8
+ Already best match
+For man 9
+ Already best match

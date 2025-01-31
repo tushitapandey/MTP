@@ -3,6 +3,5 @@ With 30 men/women, After 1000 trials:
 Best Matched pairs 29.9
 Total Trivial Manipulations 8.18444
 Possible non trivial manipulations 61.9156
-
 Successful Trivial Manipulations 1.14889
 Successful non trivial manipulations 8.68333
